@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>pictionary</title>
+</head>
+<body>
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_content %}
+ {% for post in display %}
+    <h2>{{ post.name }}</h2>
+    <div class= "col-md-4" >
+      <div class="card mb-2">
+       <img class="card-img-top" src ="{{ post.picture.url}}" alt="{{ post.name }}">
+          <div class="card-body">
+              </div>
+        </div>
+    </div>
+{% endfor %}
+<form method = "post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+{% endblock %}
+</body>
+</html>
